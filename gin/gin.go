@@ -21,6 +21,10 @@ func formDemo(router *gin.Engine) {
 	router.POST("/login", form.Login)
 }
 
+func requestBodyDemo(router *gin.Engine) {
+	router.POST("/requestBody", query.RequestBind)
+}
+
 func Gin() {
 	router := gin.Default()
 	//获取所有得用LoadHTMLGlob 不可用LoadHTMLFiles
@@ -28,5 +32,6 @@ func Gin() {
 	jsonDemo(router)
 	queryStringDemo(router)
 	formDemo(router)
+	requestBodyDemo(router)
 	router.Run() // 监听并在 0.0.0.0:8080 上启动服务
 }

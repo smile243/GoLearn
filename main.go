@@ -1,10 +1,8 @@
 package main
 
-import (
-	"hello/GoTemplate"
-)
+import "hello/gin"
 
 func main() {
-	GoTemplate.GoTemplate()
-	//gin.Gin()
+	//GoTemplate.GoTemplate()
+	gin.Gin()
 }

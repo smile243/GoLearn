@@ -6,7 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type message struct {
+type Message struct {
 	//struct tag用法 因为前端不一定首字母大写
 	Content string `json:"content"`
 	Age     int
@@ -22,7 +22,7 @@ func RequestByMap(c *gin.Context) {
 
 func RequestByStruct(c *gin.Context) {
 	//结构体类型
-	data2 := message{
+	data2 := Message{
 		Content: " yjl",
 		Age:     20,
 	}
