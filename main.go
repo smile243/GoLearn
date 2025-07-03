@@ -1,18 +1,32 @@
 package main
 
 import (
+	"hello/form"
+	"hello/query"
+
 	"github.com/gin-gonic/gin"
-	"net/http"
 )
 
-func sayHello(c *gin.Context)  {
-	c.JSON(http.StatusOK, gin.H{
-		"message": "hello yjl",
-	})
+func jsonDemo(router *gin.Engine) {
+	router.GET("json/requestByMap", query.RequestByMap)
+	router.GET("json/requestByStruct", query.RequestByStruct)
+}
+
+func queryStringDemo(router *gin.Engine) {
+	router.GET("json/requestWithString", query.RequestWithString)
+}
+
+func formDemo(router *gin.Engine) {
+	router.GET("/login", form.GetLogin)
+	router.POST("/login", form.Login)
 }
 
 func main() {
 	router := gin.Default()
-	router.GET("/hello", sayHello)
+	//获取所有得用LoadHTMLGlob 不可用LoadHTMLFiles
+	router.LoadHTMLGlob("template/*")
+	jsonDemo(router)
+	queryStringDemo(router)
+	formDemo(router)
 	router.Run() // 监听并在 0.0.0.0:8080 上启动服务
 }
