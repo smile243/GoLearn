@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title>根模板</title>
+</head>
+<body>
+<div class="nav"></div>
+<div class="main">
+    <div class="menu"></div>
+    <div class="content">
+        {{block "content" .}}{{end}}
+    </div>
+</div>
+</body>
+</html>

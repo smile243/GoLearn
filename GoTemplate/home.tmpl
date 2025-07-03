@@ -1,0 +1,6 @@
+{{/*继承根模板,需要多一步接受就是 .*/}}
+{{template "base.tmpl" .}}
+{{/*定义block*/}}
+{{define "content"}}
+    <h3>{{ . }}</h3>
+{{end}}
