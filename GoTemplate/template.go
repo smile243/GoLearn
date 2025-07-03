@@ -12,18 +12,9 @@ type UserInfo struct {
 	Age    int
 }
 
-func main() {
-	http.HandleFunc("/", sayHello)
-	err := http.ListenAndServe(":9000", nil)
-	if err != nil {
-		fmt.Printf("Http server start failed,errMsg:%v\n", err)
-		return
-	}
-}
-
-func sayHello(w http.ResponseWriter, r *http.Request) {
+func SayHello(w http.ResponseWriter, r *http.Request) {
 	//解析模板
-	t, err := template.ParseFiles("./hello.tmpl")
+	t, err := template.ParseFiles("GoTemplate/hello.tmpl")
 	if err != nil {
 		fmt.Printf("GoTemplate file parse failed,errMsg:%v\n", err)
 		return

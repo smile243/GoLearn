@@ -6,17 +6,7 @@ import (
 	"text/template"
 )
 
-
-func main() {
-	http.HandleFunc("/", sayHello)
-	err := http.ListenAndServe(":9000", nil)
-	if err != nil {
-		fmt.Printf("Http server start failed,errMsg:%v\n", err)
-		return
-	}
-}
-
-func sayHello(w http.ResponseWriter, r *http.Request) {
+func sayHelloV3(w http.ResponseWriter, r *http.Request) {
 	//定义模板
 	t := template.New("helloV3.tmpl")
 	autochat := func(name string) (string, error) {
@@ -24,10 +14,10 @@ func sayHello(w http.ResponseWriter, r *http.Request) {
 	}
 	//告诉模板自定义函数
 	t.Funcs(template.FuncMap{
-		"autochat":autochat,
+		"autochat": autochat,
 	})
 	//解析模板
-	_, err := t.ParseFiles("./helloV3.tmpl")
+	_, err := t.ParseFiles("GoTemplate/helloV3.tmpl")
 	if err != nil {
 		fmt.Printf("GoTemplate file parse failed,errMsg:%v\n", err)
 		return

@@ -4,27 +4,11 @@ import (
 	"fmt"
 	"html/template"
 	"net/http"
-
 )
 
-type UserInfo struct {
-	Name   string
-	Gender string
-	Age    int
-}
-
-func main() {
-	http.HandleFunc("/", sayHello)
-	err := http.ListenAndServe(":9000", nil)
-	if err != nil {
-		fmt.Printf("Http server start failed,errMsg:%v\n", err)
-		return
-	}
-}
-
-func sayHello(w http.ResponseWriter, r *http.Request) {
+func SayHelloV2(w http.ResponseWriter, r *http.Request) {
 	//解析模板
-	t, err := template.ParseFiles("./helloV2.tmpl")
+	t, err := template.ParseFiles("GoTemplate/helloV2.tmpl")
 	if err != nil {
 		fmt.Printf("GoTemplate file parse failed,errMsg:%v\n", err)
 		return
@@ -47,9 +31,9 @@ func sayHello(w http.ResponseWriter, r *http.Request) {
 	}
 	//渲染模板
 	err = t.Execute(w, map[string]any{
-		"u1":user,
-		"m1":m1,
-		"hobbys":hobbyList,
+		"u1":     user,
+		"m1":     m1,
+		"hobbys": hobbyList,
 	})
 	if err != nil {
 		fmt.Printf("GoTemplate file render failed,errMsg:%v\n", err)
