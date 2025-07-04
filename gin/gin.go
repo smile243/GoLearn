@@ -2,6 +2,7 @@ package gin
 
 import (
 	"hello/form"
+	"hello/middleware"
 	"hello/query"
 	"hello/upload"
 
@@ -37,9 +38,12 @@ func uploadDemo(router *gin.Engine) {
 }
 
 func Gin() {
+	//默认使用logger,recovery中间件
 	router := gin.Default()
 	//获取所有得用LoadHTMLGlob 不可用LoadHTMLFiles
 	router.LoadHTMLGlob("template/*")
+	//全局注册自定义中间件
+	router.Use(middleware.LoggerHandler(), middleware.M1())
 	jsonDemo(router)
 	queryStringDemo(router)
 	formDemo(router)

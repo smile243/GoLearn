@@ -1,2 +1,3 @@
 - 同一目录下的文件的package必须统一
 - 通过字段大小写控制安全性，小写相当于private，大写是public
+- gin中使用goroutine，只能用context的拷贝(c.Copy())
