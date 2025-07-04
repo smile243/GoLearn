@@ -3,13 +3,19 @@ package gin
 import (
 	"hello/form"
 	"hello/query"
+	"hello/upload"
 
 	"github.com/gin-gonic/gin"
 )
 
 func jsonDemo(router *gin.Engine) {
-	router.GET("json/requestByMap", query.RequestByMap)
-	router.GET("json/requestByStruct", query.RequestByStruct)
+	//路由分组
+	userGroup := router.Group("/json")
+	{
+		userGroup.GET("/requestByMap", query.RequestByMap)
+		userGroup.GET("/requestByStruct", query.RequestByStruct)
+	}
+
 }
 
 func queryStringDemo(router *gin.Engine) {
@@ -25,6 +31,11 @@ func requestBodyDemo(router *gin.Engine) {
 	router.POST("/requestBody", query.RequestBind)
 }
 
+func uploadDemo(router *gin.Engine) {
+	router.GET("/upload", upload.GetUpload)
+	router.POST("/upload", upload.Upload)
+}
+
 func Gin() {
 	router := gin.Default()
 	//获取所有得用LoadHTMLGlob 不可用LoadHTMLFiles
@@ -33,5 +44,6 @@ func Gin() {
 	queryStringDemo(router)
 	formDemo(router)
 	requestBodyDemo(router)
+	uploadDemo(router)
 	router.Run() // 监听并在 0.0.0.0:8080 上启动服务
 }
