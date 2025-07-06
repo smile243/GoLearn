@@ -1,6 +1,10 @@
 package main
 
-import "database/sql"
+import (
+	"database/sql"
+
+	"gorm.io/gorm"
+)
 
 type Demo struct {
 	ID int32
@@ -10,3 +14,7 @@ type Demo struct {
 	Name sql.NullString `gorm:"type:varchar(50);default:yjl"`
 	Age  int32
 }
+
+var (
+	DB *gorm.DB
+)
